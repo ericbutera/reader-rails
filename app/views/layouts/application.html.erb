@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ReaderRails</title>
+  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2" id="nav"><%= render("layouts/nav") %></div>
+    <div class="span10" id="content"><%= yield %></div>
+  </div>
+</div>
+
+<%= javascript_include_tag "application" %>
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

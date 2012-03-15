@@ -1,0 +1,14 @@
+<div class="well" style="padding: 8px 0;">
+<ul class="nav nav-list">
+  <li class="nav-header">Feeds</li>
+  <% for feed in Feed.all %>
+    <li><a href="/items/feed/<%= "#{feed.id}" %>" class="feed-url"><%= "#{feed.title}" %> (<%= "#{feed.unread}" %>)</a> </li>
+  <% end %>
+  <li class="divider"></li>
+  <li>
+  <a href="/feeds"><i class="icon-cog"></i>Feeds</a>
+  </li>
+</ul>
+</div>
+
+

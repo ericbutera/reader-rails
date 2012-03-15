@@ -1,0 +1,22 @@
+<% for feed,items in @feed_items %>
+<table width="100%">
+<tr>
+  <td><h1><%= "#{feed.title}" %></h1></td>
+</tr>
+  <% for item in items %>
+    <tr>
+      <td>
+        <strong>
+          <a href="<%= "#{item.url}" %>" title="guid: <%= "#{item.guid}" %>">
+            <%= "#{item.title}" %>
+          </a>
+          </strong>
+      </td>
+    </tr>
+    <tr>
+      <td><%= raw("#{item.sanitized}") %></td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+

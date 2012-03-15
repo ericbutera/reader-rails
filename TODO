@@ -1,0 +1,36 @@
+Feed
+id
+feed_url
+updated_date
+added_date
+entry_count
+unread_count
+ - has_many :items
+
+Item
+id
+feed_id
+title
+url
+guid
+added_date
+is_viewed
+ - has_one :feed
+
+
+add feed
+- check if feed exists
+
+fetch feed contents
+- regular intervals
+
+view item
+- figure out accordion viewer
+
+
+Beginning Rails 3
+Chapter 5. Advanced Active Record: Enhancing Your Models
+
+
+
+

@@ -1,0 +1,9 @@
+Fetched feeds
+<ul>
+<% for feed,items in @feed_items %>
+    <li>
+    <%= "url: #{feed.url} new: #{@fetch.new_items[feed.id]} count: #{items.length}" %>
+    </li>
+<% end %>
+</ul>
+

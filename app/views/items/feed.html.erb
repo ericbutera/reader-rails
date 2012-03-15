@@ -1,0 +1,27 @@
+<div id="items-header">
+  <h1><%= "#{@feed.title}" %></h1>
+  <span class="stats">
+  {unread} {total}
+  </span>
+</div>
+
+<div class="items">
+<% for item in @items %>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" href="#collapse-<%= "#{item.id}" %>">
+        <%= "#{item.title}" %>
+        (Viewed: <%= "#{item.is_viewed}" %>)
+        (Added: <%= "#{item.added}" %>)
+      </a>
+    </div>
+    <div id="collapse-<%= "#{item.id}" %>" class="collapse in">
+      <div class="accordion-inner">
+        <strong><a href="<%= "#{item.url}" %>"><%= "#{item.title}" %></a></strong><br />
+        <%= raw("#{item.sanitized}") %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+
