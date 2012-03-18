@@ -21,7 +21,6 @@ role :db,  "irontusk.net", :primary => true # This is where Rails migrations wil
 after "deploy", "deploy:bundle_gems"
 after "deploy:bundle_gems", "deploy:restart"
 
-
 namespace :deploy do
   task :bundle_gems do
     run "cd #{deploy_to}"
