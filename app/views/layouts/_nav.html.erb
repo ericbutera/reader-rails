@@ -1,7 +1,7 @@
 <div class="well" style="padding: 8px 0;">
 <ul class="nav nav-list">
   <li class="nav-header">Feeds</li>
-  <% for feed in Feed.all %>
+  <% for feed in menu %>
     <li><a href="/items/feed/<%= "#{feed.id}" %>" class="feed-url"><%= "#{feed.title}" %> (<%= "#{feed.unread}" %>)</a> </li>
   <% end %>
   <li class="divider"></li>

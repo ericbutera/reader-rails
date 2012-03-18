@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20120315221317) do
     t.string   "title"
     t.string   "url"
     t.string   "guid"
-    t.datetime "added",       :default => '2012-03-09 18:32:04'
+    t.datetime "added",       :default => '2012-03-18 13:09:03'
     t.integer  "is_viewed",   :default => 0
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
