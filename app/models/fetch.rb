@@ -43,15 +43,14 @@ class Fetch
       return item
     end
 
+    date = DateTime.now
     pubDate = raw.xpath('pubDate').text
+    pub = date
     if (pubDate.length > 0)
       begin
-        date = DateTime.parse(pubDate);
+        pub = DateTime.parse(pubDate);
       rescue
-        date = DateTime.now
       end
-    else
-      date = DateTime.now
     end
 
     desc = raw.xpath('description').text
@@ -63,6 +62,7 @@ class Fetch
       :description => desc,
       :sanitized   => @sanitizer.sanitize(desc),
       :added       => date,
+      :pub_date    => pub,
       :updated_at  => date
     }
     @new_items[feed.id] = @new_items[feed.id] + 1

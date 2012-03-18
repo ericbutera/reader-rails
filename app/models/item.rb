@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-  attr_accessible :feed_id, :title, :url, :guid, :added, :updated_at, :is_viewed, :description, :sanitized
+  attr_accessible :feed_id, :title, :url, :guid, :added, :updated_at, :is_viewed, :description, :sanitized, :pub_date
 
   belongs_to :feed
 

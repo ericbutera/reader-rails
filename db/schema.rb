@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120315221317) do
+ActiveRecord::Schema.define(:version => 20120318203108) do
 
   create_table "feeds", :force => true do |t|
     t.string   "title"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120315221317) do
     t.datetime "updated_at",                                     :null => false
     t.text     "description"
     t.text     "sanitized"
+    t.datetime "pub_date",    :default => '2012-03-18 21:33:11'
   end
 
   create_table "users", :force => true do |t|

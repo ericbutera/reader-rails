@@ -7,7 +7,7 @@ set :scm, :git
 set :user, "deployer"
 set :use_sudo, false
 set :deploy_to, "/home/deployer/code/#{application}"
-set :deploy_via, :remote_cache
+# set :deploy_via, :remote_cache
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 role :web, "irontusk.net"                          # Your HTTP server, Apache/etc
@@ -18,8 +18,8 @@ role :db,  "irontusk.net", :primary => true # This is where Rails migrations wil
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
+# set :whenever_command, "whenever"
+# require "whenever/capistrano"
 
 after "deploy", "deploy:copy_database"
 after "deploy:copy_database", "deploy:restart"
