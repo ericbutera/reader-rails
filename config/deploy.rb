@@ -18,6 +18,9 @@ role :db,  "irontusk.net", :primary => true # This is where Rails migrations wil
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 after "deploy", "deploy:copy_database"
 after "deploy:copy_database", "deploy:restart"
 

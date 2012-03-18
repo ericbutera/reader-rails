@@ -7,7 +7,6 @@ class Fetch
 
   attr_accessor :new_items
 
-
   def initialize
     @sanitizer = HTML::Sanitizer.new
     @new_items = []
