@@ -41,10 +41,24 @@
     }
   };
 
+  /*
+  var itemHelper = {
+    contentClicked: function(ev) {
+      var el = $(ev.target);
+      if (el.hasClass("")) {
+        // item line clicked
+      }
+    },
+    init:function() {
+      contentHelper.getEl().click($.proxy(this.contentClicked);
+      // eventer.bind("navHelper.contentLoaded", $.proxy(this., this));
+    }
+  };*/
 
   $(function(){
     contentHelper.init();
     navHelper.init();
+    //itemHelper.init();
   });
 
 })(jQuery);

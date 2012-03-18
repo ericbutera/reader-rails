@@ -18,12 +18,12 @@ role :db,  "irontusk.net", :primary => true # This is where Rails migrations wil
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
-after "deploy", "deploy:bundle_gems"
-after "deploy:bundle_gems", "deploy:restart"
+after "deploy", "deploy:copy_database"
+after "deploy:copy_database", "deploy:restart"
 
 namespace :deploy do
-  task :bundle_gems do
-    run "cd #{deploy_to}"
+  task :copy_database do
+    run "ln -s #{deploy_to}/database.yml #{release_path}/config/database.yml"
   end
   task :start do ; end
   task :stop do ; end
