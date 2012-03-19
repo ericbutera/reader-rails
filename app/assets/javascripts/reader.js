@@ -15,6 +15,13 @@
 - feed unread counts
 -
 */
+
+  var collapseHelper = {
+    getEls: function() {
+      return $(".collapse");
+    }
+  };
+
   var navHelper = {
     getPane: function() { return $("#nav"); },
     removeHighlight: function() {
@@ -30,9 +37,7 @@
         linkEl.parents("li").first().addClass("active");
         $.get(url, function(data) {
           contentHelper.getEl().html(data);
-
-          $(".collapse").collapse();
-          //var first = $(".collapse").first().collapse("show");
+          collapseHelper.getEls().collapse();
         });
       }
     },
@@ -41,24 +46,59 @@
     }
   };
 
-  /*
+  var itemViewed = {
+    result: function(item) {
+      // $(eventer).trigger("itemViewed.viewed", [item]);
+      var headerEl = $("#item-header-"+ item.id);
+      var parentEl = headerEl.parent("div");
+      parentEl.addClass("item-viewed");
+    },
+    viewed: function(itemId) {
+      $.post("/items/viewed/"+ itemId, $.proxy(this.result, this));
+    }
+  };
+
   var itemHelper = {
+    open: false,
+    handleShow: function(ev) {
+      console.log("itemHelper.handleShow %o", ev);
+    },
+    closeAll: function() {
+      collapseHelper.getEls().collapse("hide");
+    },
     contentClicked: function(ev) {
       var el = $(ev.target);
-      if (el.hasClass("")) {
-        // item line clicked
+      if (el.hasClass("item-title")) {
+        try {
+          var itemId = el.attr("href").split("-")[1];
+          var toggleEl = $("#collapse-" + itemId);
+          if (this.open) {
+            /*if (this.open == itemId) { 
+              console.log("toggling");
+              // TODO for some reason, this messes with the padding
+              //$("#collapse-"+ this.open).collapse({toggle:true});
+              $("#collapse-"+ this.open).collapse("toggle");
+            } else {
+              console.log("closing old id %o %o", itemId, this.open);
+              $("#collapse-"+ this.open).collapse("toggle");
+            }*/
+            $("#collapse-"+ this.open).collapse("toggle");
+          }
+          this.open = itemId;
+
+          itemViewed.viewed(itemId);
+        } catch (e) {}
       }
     },
     init:function() {
-      contentHelper.getEl().click($.proxy(this.contentClicked);
-      // eventer.bind("navHelper.contentLoaded", $.proxy(this., this));
+      contentHelper.getEl().click($.proxy(this.contentClicked, this));
     }
-  };*/
+  };
 
   $(function(){
     contentHelper.init();
     navHelper.init();
-    //itemHelper.init();
+    itemHelper.init();
   });
 
 })(jQuery);

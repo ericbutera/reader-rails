@@ -13,5 +13,15 @@ class ItemsController < ApplicationController
     render :layout => "empty"
   end
 
+  def viewed
+    @item = Item.find(params[:id])
+    @item.is_viewed = 1
+    @item.save
+    render :json => @item
+    #respond_to do |format|
+    #  format.json { render :json => @item }
+    #end
+  end
+
 end
 

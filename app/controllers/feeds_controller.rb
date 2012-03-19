@@ -86,7 +86,7 @@ class FeedsController < ApplicationController
     @feed_items = Hash.new
     Feed.all.each do |feed|
       @feed_items[feed] = @fetch.by_feed(feed)
-      logger.info "feed #{feed.id} fetched #{@feed_items.length} with #{@fetch.new_items.length} new"
+      logger.info "feed #{feed.id} parsed:#{@feed_items[feed].length}"
     end
   end
 

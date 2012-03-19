@@ -2,6 +2,7 @@ ReaderRails::Application.routes.draw do
   match '/items/feed/:feed_id' => 'items#feed'
   match '/' => 'index#index'
   match '/items' => 'items#index'
+  match '/items/viewed/:id' => 'items#viewed' #match '/items/viewed/:id(.:format)' => 'items#viewed'
   match '/feeds/fetch' => 'feeds#fetch'
   resources :feeds
   resources :users

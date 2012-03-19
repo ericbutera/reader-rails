@@ -8,17 +8,21 @@
 <div class="items">
 <% for item in @items %>
   <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse-<%= "#{item.id}" %>">
+    <div class="accordion-heading<%= item.is_viewed == 1 ? ' item-viewed' : '' %>" id="<%= "item-header-#{item.id}" %>">
+      <a class="accordion-toggle item-title" data-toggle="collapse" href="#collapse-<%= "#{item.id}" %>">
         <%= "#{item.title}" %>
-        (Viewed: <%= "#{item.is_viewed}" %>)
-        (Added: <%= "#{item.added}" %>)
       </a>
     </div>
     <div id="collapse-<%= "#{item.id}" %>" class="collapse in">
       <div class="accordion-inner">
-        <strong><a href="<%= "#{item.url}" %>"><%= "#{item.title}" %></a></strong><br />
+        <strong><a href="<%= "#{item.url}" %>"><%= "#{item.title}" %></a></strong>
+        <div class="dates">
+        (Added: <%= "#{item.added}" %>)
+        (Pubdate: <%= "#{item.pub_date}" %>)
+        </div>
+        <div class="content">
         <%= raw("#{item.sanitized}") %>
+        </div>
       </div>
     </div>
   </div>

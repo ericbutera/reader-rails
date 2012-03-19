@@ -18,3 +18,7 @@ h3 {
   display: none;
 }
 
+.item-viewed {
+  background-color: whiteSmoke;
+}
+
