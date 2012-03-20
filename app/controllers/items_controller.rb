@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_filter :authenticate
 
   def index 
     @feed_items = Hash.new

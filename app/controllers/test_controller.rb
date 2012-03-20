@@ -1,4 +1,5 @@
 class TestController < ApplicationController
+  before_filter :authenticate
 
   def fetch
     fetch = Fetch.new

@@ -7,6 +7,7 @@ gem 'rails', '3.2.1'
 
 # gem 'sqlite3'
 gem 'mysql'
+gem 'bcrypt-ruby'
 
 
 # Gems used only for assets and not required

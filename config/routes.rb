@@ -5,8 +5,15 @@ ReaderRails::Application.routes.draw do
   match '/items' => 'items#index'
   match '/items/viewed/:id' => 'items#viewed' #match '/items/viewed/:id(.:format)' => 'items#viewed'
   match '/feeds/fetch' => 'feeds#fetch'
+
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+
   resources :feeds
   resources :users
+  resources :sessions
+
+  root :to => "sessions#new"
 
   # resource :users
 

@@ -1,4 +1,6 @@
-class FeedsController < AuthenticationController # ApplicationController
+class FeedsController < ApplicationController
+  before_filter :authenticate
+
   # GET /feeds
   # GET /feeds.json
   def index
