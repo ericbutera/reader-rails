@@ -1,4 +1,4 @@
-class FeedsController < ApplicationController
+class FeedsController < AuthenticationController # ApplicationController
   # GET /feeds
   # GET /feeds.json
   def index
