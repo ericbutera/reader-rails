@@ -58,6 +58,17 @@
     }
   };
 
+  var itemLoader = {
+    getEl: function(id) {
+      return $("#item-content-"+ id);
+    },
+    load: function(id) {
+      $.get("/items/sanitized/"+ id, function(data){
+        itemLoader.getEl(id).html(data);
+      });
+    }
+  };
+
   var itemHelper = {
     open: false,
     handleShow: function(ev) {
@@ -87,6 +98,7 @@
           this.open = itemId;
 
           itemViewed.viewed(itemId);
+          itemLoader.load(itemId);
         } catch (e) {}
       }
     },

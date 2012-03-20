@@ -1,4 +1,5 @@
 ReaderRails::Application.routes.draw do
+  match '/items/sanitized/:id' => 'items#sanitized'
   match '/items/feed/:feed_id' => 'items#feed'
   match '/' => 'index#index'
   match '/items' => 'items#index'

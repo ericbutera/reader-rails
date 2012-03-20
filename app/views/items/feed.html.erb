@@ -20,8 +20,9 @@
         (Added: <%= "#{item.added}" %>)
         (Pubdate: <%= "#{item.pub_date}" %>)
         </div>
-        <div class="content">
-        <%= raw("#{item.sanitized}") %>
+        <div class="content" id="<%= "item-content-#{item.id}" %>">
+        <% # TODO optimize if item.sanitized.length < X, show %>
+        <% # raw("#{item.sanitized}") %>
         </div>
       </div>
     </div>

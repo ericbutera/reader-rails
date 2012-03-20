@@ -22,5 +22,6 @@ class Item < ActiveRecord::Base
   def self.by_feed(feed_id)
     Item.where("feed_id=?", feed_id).limit(25)
   end
+
 end
 
