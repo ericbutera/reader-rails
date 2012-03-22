@@ -9,7 +9,10 @@ class ItemsController < ApplicationController
   end
 
   def feed
-    # session[:item_viewed_filter] = 'unread'
+    if params[:item_viewed_filter]
+      session[:item_viewed_filter] = params[:item_viewed_filter]
+    end
+
     @item_viewed_filter = session[:item_viewed_filter] ||= 'unread' # need to abstract this somehow
     @feed = Feed.find(params[:feed_id])
     @items = Item.by_feed(@feed, @item_viewed_filter)

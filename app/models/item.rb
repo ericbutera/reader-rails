@@ -6,8 +6,8 @@ class Item < ActiveRecord::Base
   validates :url, :presence => true
 
   default_scope order('items.added DESC')
-  scope :by_feed, lambda { |feed_id, item_viewed_filter| is_viewed = (item_viewed_filter == 'all') ? where("items.feed_id=?", feed_id) : where("items.feed_id=? AND is_viewed=0", feed_id); }
   scope :unread, lambda { |feed_id| where("items.feed_id=? AND items.is_viewed=0", feed_id) }
+  scope :all, lambda { |feed_id| where("items.feed_id=?", feed_id) }
   scope :by_guid, lambda { |guid| where(:guid => guid) }
 
   def self.by_guid(feed_id, guid)
@@ -18,5 +18,12 @@ class Item < ActiveRecord::Base
     Item.where("feed_id=? AND url=?", feed_id, url).first
   end
 
+  def self.by_feed(feed_id, item_viewed_filter) 
+    if (item_viewed_filter == 'all') 
+      Item.all(feed_id).limit(25)
+    else
+      Item.unread(feed_id).limit(25)
+    end
+  end
 end
 
