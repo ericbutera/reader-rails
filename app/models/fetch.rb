@@ -16,6 +16,7 @@ class Fetch
     @new_items[feed.id] = 0
     # generate item entries from rss
     doc = Nokogiri::XML(open(feed.url))
+    doc.encoding = 'utf-8'
     items = doc.xpath('//item').map do |i|
       item = by_item(feed, i)
     end

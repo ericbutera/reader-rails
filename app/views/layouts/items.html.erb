@@ -11,14 +11,15 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2" id="nav"><%= render("layouts/nav") %></div>
-    <div class="span10" id="content"><%= yield %></div>
+    <div class="span10">
+      <%= render("items/tabs") %>
+      <div id="content"><%= yield %></div>
+    </div>
   </div>
 </div>
 
 <%= javascript_include_tag "application" %>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/underscore-min.js"></script>
-<script type="text/javascript" src="/js/backbone-min.js"></script>
 
 </body>
 </html>

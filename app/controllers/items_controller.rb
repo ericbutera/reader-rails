@@ -9,9 +9,22 @@ class ItemsController < ApplicationController
   end
 
   def feed
+    # session[:item_viewed_filter] = 'unread'
+    @item_viewed_filter = session[:item_viewed_filter] ||= 'unread' # need to abstract this somehow
     @feed = Feed.find(params[:feed_id])
-    @items = Item.by_feed(@feed)
-    render :layout => "empty"
+    @items = Item.by_feed(@feed, @item_viewed_filter)
+    #render :layout => "empty"
+
+    #todo <- do this in feed.fetch_all
+    html = render_to_string(partial: 'feed.html.erb', locals: { items: @items }) 
+    html.gsub!(/\s\s+/, ' ')
+
+    render :json => {
+      :sort => @sort,
+      :feed => @feed,
+      :items => html,
+      :item_viewed_filter => @item_viewed_filter
+    }
   end
 
   def viewed

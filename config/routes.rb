@@ -6,11 +6,14 @@ ReaderRails::Application.routes.draw do
   match '/items/viewed/:id' => 'items#viewed' #match '/items/viewed/:id(.:format)' => 'items#viewed'
   match '/feeds/fetch' => 'feeds#fetch'
 
+  post '/sort/set' => 'sort#set'
+
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
 
   resources :feeds
   resources :users
+  resources :items
   resources :sessions
 
   root :to => "sessions#new"

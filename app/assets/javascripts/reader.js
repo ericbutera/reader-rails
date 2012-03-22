@@ -15,14 +15,23 @@
 - feed unread counts
 -
 */
-
   var collapseHelper = {
     getEls: function() {
       return $(".collapse");
     }
   };
 
-  var navHelper = {
+  var tabHelper = {
+    loaded: function(ev, feed, item_viewed_filter) {
+      console.log("tab helper saw nav loaded %o %o %o", ev, feed, item_viewed_filter);
+    },
+    init: function() {
+      $(eventer).bind("feedHelper.loaded", $.proxy(this.loaded, this));
+    }
+  };
+
+  var feedHelper = {
+    // todo refactor this into feedHelper & navHelper
     getPane: function() { return $("#nav"); },
     removeHighlight: function() {
       $("#nav li").removeClass("active");
@@ -36,8 +45,15 @@
         var url = linkEl.attr("href");
         linkEl.parents("li").first().addClass("active");
         $.get(url, function(data) {
-          contentHelper.getEl().html(data);
-          collapseHelper.getEls().collapse();
+          try {
+            var feed = data.feed
+              , items = data.items
+              , item_viewed_filter = data.item_viewed_filter;
+
+            contentHelper.getEl().html(items);
+            collapseHelper.getEls().collapse();
+            $(eventer).trigger("feedHelper.loaded", [feed, item_viewed_filter]);
+          } catch (e) {}
         });
       }
     },
@@ -109,8 +125,9 @@
 
   $(function(){
     contentHelper.init();
-    navHelper.init();
+    feedHelper.init();
     itemHelper.init();
+    tabHelper.init();
   });
 
 })(jQuery);
